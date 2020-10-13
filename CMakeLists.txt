@@ -1,8 +1,12 @@
 cmake_minimum_required(VERSION 3.4)
-project(QtGUI)
+project(BallFountainSleepScreen)
 
 FIND_PACKAGE(Qt5Widgets)
 FIND_PACKAGE(Qt5Gui)
+FIND_PACKAGE(OpenSceneGraph REQUIRED COMPONENTS osgDB osgGA osgUtil osgViewer osgText)
+
+INCLUDE_DIRECTORIES( ${OPENSCENEGRAPH_INCLUDE_DIRS} )
+
 
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED 1)
@@ -15,10 +19,13 @@ add_executable(${PROJECT_NAME}
     main.cpp
     mainwindow.cpp
     mainwindow.h
+    osgwidget.cpp
+    osgwidget.h
     mainwindowform.ui
 )
 
 target_link_libraries(${PROJECT_NAME}
+    ${OPENSCENEGRAPH_LIBRARIES}
     Qt5::Widgets
     Qt5::Gui
 )
