@@ -1,11 +1,13 @@
 #include "mainwindow.h"
 #include "ui_mainwindowform.h"
 
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow{parent},
     mMainWindowUI{new Ui::MainWindowForm}
 {
     mMainWindowUI->setupUi(this);
+
 }
 
 MainWindow::~MainWindow()
@@ -16,4 +18,10 @@ MainWindow::~MainWindow()
 void MainWindow::on_actionExit_triggered()
 {
     QApplication::quit();
+}
+
+
+void MainWindow::on_actionToggle_toggle()
+{
+
 }

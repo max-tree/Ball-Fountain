@@ -3,6 +3,8 @@
 
 #include <QMainWindow>
 #include <QtCore>
+#include <osgwidget.h>
+#include <QPushButton>
 
 namespace Ui {
 class MainWindowForm;
@@ -18,6 +20,9 @@ public:
 
 public slots:
     void on_actionExit_triggered();
+    void on_actionToggle_toggle();
+private slots:
+
 
 private:
     Ui::MainWindowForm *mMainWindowUI;
