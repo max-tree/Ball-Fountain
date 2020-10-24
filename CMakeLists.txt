@@ -23,7 +23,8 @@ add_executable(${PROJECT_NAME}
     osgwidget.cpp
     ButtonActions.cpp
     physics.cpp
-    accelerateDueToGravity_UnitTest.cpp
+    ChangeVelocityDueToGravity_unitTest.cpp
+    ChangePosition_UnitTest.cpp
     mainwindow.h
     osgwidget.h
     physics.h

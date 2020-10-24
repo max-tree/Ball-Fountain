@@ -7,7 +7,7 @@
 #include <osgViewer/CompositeViewer>
 #include <osgGA/TrackballManipulator>
 #include <osgText/Text>
-#include<QPushButton.h>
+#include <physics.h>//how can I put this somewhere else????
 
 class OSGWidget : public QOpenGLWidget
 {
@@ -35,5 +35,7 @@ private:
   osg::ref_ptr<osg::Group> mRoot;
   int mTimerId{0};
 };
+
+
 
 #endif

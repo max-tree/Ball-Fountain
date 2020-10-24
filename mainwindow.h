@@ -5,6 +5,7 @@
 #include <QtCore>
 #include <osgwidget.h>
 #include <QPushButton>
+#include <physics.h>
 
 namespace Ui {
 class MainWindowForm;
@@ -20,12 +21,14 @@ public:
 
 public slots:
     void on_actionExit_triggered();
-    void on_actionToggle_toggle();
 private slots:
-
+    void on_ChangeColor_clicked();
 
 private:
     Ui::MainWindowForm *mMainWindowUI;
 };
+
+
+int  button_Clicked(int change);
 
 #endif // MAINWINDOW_H

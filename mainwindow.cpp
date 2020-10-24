@@ -1,6 +1,7 @@
 #include "mainwindow.h"
+//#include <osgwidget.h>
 #include "ui_mainwindowform.h"
-
+#include <iostream>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow{parent},
@@ -21,7 +22,8 @@ void MainWindow::on_actionExit_triggered()
 }
 
 
-void MainWindow::on_actionToggle_toggle()
+void MainWindow::on_ChangeColor_clicked()
 {
+button_Clicked(1);
 
 }
