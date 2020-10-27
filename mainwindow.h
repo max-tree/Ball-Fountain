@@ -24,11 +24,19 @@ public slots:
 private slots:
     void on_ChangeColor_clicked();
 
+    void on_radioButtonLeft_clicked(bool checked);
+
+    void on_radioButtonRight_clicked(bool checked);
+
+    void on_radioButtonStraightUp_clicked(bool checked);
+
 private:
     Ui::MainWindowForm *mMainWindowUI;
 };
 
 
 int  button_Clicked(int change);
+int radio_button_clicked(bool change, int initialRadioButton);
+
 
 #endif // MAINWINDOW_H

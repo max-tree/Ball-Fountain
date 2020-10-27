@@ -1,4 +1,6 @@
 #include "osgwidget.h"
+#include "SpherePhysicsUpdateCallback.h"
+#include "SphereColorUpdateCallback.h"
 #include <osg/Camera>
 #include <osg/DisplaySettings>
 #include <osg/Geode>
@@ -22,83 +24,6 @@
 #include <QKeyEvent>
 #include <QPainter>
 #include <QWheelEvent>
-
-class SphereUpdateCallback: public osg::NodeCallback //Note to self: every class needs to have its own .cpp file. MOVE THIS
-{//I will have to make one of these for the physics equations. This is the secret. Do exactly what this does but add a physics world into the mix.
-public:
-    SphereUpdateCallback(){}
-
-    virtual void operator()(osg::Node* node, osg::NodeVisitor* nv)
-    {
-//        if(mUp)
-//            mCount++;
-//        else
-//            mCount--;
-
-        physicsSphere->change_position();
-
-        currentPosition = physicsSphere->getPosition();
-        osg::Vec3d position(currentPosition[0], currentPosition[1], currentPosition[2]);
-        osg::Vec3d scaleFactor(0.25, 0.25, 0.25);
-        osg::PositionAttitudeTransform *pat = dynamic_cast<osg::PositionAttitudeTransform *> (node);
-        pat->setPosition(position);
-        pat->setScale(scaleFactor);
-        traverse(node, nv);
-
-
-//        if(mCount==300 || mCount==0)
-//            mUp=!mUp;
-    }
-public:
-    bool mUp{true};
-    unsigned int mCount{0};
-    double mScaleStep{1.0/30.0};
-    std::array <double, 3> currentPosition{0.0,0.0,0.0};
-    physics* physicsSphere = new physics;
-};
-
-int  button_Clicked(int change)
-{
-    static int buttonClicked{1};
-
-    if(change)
-    {
-    if(buttonClicked)
-        buttonClicked--;
-    else
-        buttonClicked++;
-    }
-
-    return buttonClicked;
-}
-
-
-class SphereColorUpdateCallback: public osg::NodeCallback //Note to self: every class needs to have its own .cpp file. MOVE THIS
-{//I will have to make one of these for the physics equations. This is the secret. Do exactly what this does but add a physics world into the mix.
-public:
-    SphereColorUpdateCallback(){}
-
-    virtual void operator()(osg::Node* node, osg::NodeVisitor* nv)
-    {
-        osg::ShapeDrawable *pat =  dynamic_cast<osg::ShapeDrawable *> (node);
-//        std::cout << "here" << '\n';
-
-        if(button_Clicked(0))
-        {
-            pat->setColor( osg::Vec4( 0.f, 0.f, 0.f, 0.f ) );
-
-        }
-        else
-        {
-        pat->setColor( osg::Vec4( 1.f, 0.f, 1.f, 1.f ) );
-
-        }
-        traverse(node, nv);
-
-    }
-
-};
-
 
 OSGWidget::OSGWidget( QWidget* parent, Qt::WindowFlags flags ):
     QOpenGLWidget{ parent,flags },
@@ -159,13 +84,10 @@ OSGWidget::OSGWidget( QWidget* parent, Qt::WindowFlags flags ):
     stateSet->setAttributeAndModes( material, osg::StateAttribute::ON );
     stateSet->setMode( GL_DEPTH_TEST, osg::StateAttribute::ON );     //Note to self: this one controls how the scene is built. this one is set to build from the back to the front of the scene.
 
-//    physics *physicsSphere = new physics;
-
     osg::PositionAttitudeTransform *transform = new osg::PositionAttitudeTransform;
     transform->setPosition(osg::Vec3( 0.f, 0.f, 0.f ));
-    transform->setUpdateCallback(new SphereUpdateCallback());
+    transform->setUpdateCallback(new SpherePhysicsUpdateCallback());
     transform->addChild(geode);
-
     mRoot->addChild(transform);
 
     this->setFocusPolicy( Qt::StrongFocus );
