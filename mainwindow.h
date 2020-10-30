@@ -21,13 +21,11 @@ public:
 
 public slots:
     void on_actionExit_triggered();
+
 private slots:
     void on_ChangeColor_clicked();
-
     void on_radioButtonLeft_clicked(bool checked);
-
     void on_radioButtonRight_clicked(bool checked);
-
     void on_radioButtonStraightUp_clicked(bool checked);
 
 private:

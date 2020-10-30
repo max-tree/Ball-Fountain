@@ -24,6 +24,8 @@ add_executable(${PROJECT_NAME}
     physics.cpp
     ChangeVelocityDueToGravity_unitTest.cpp
     ChangePosition_UnitTest.cpp
+    BounceOffTheGround_unitTest.cpp
+    CheckIfBallHasHitTheGround_unitTest.cpp
     mainwindow.h
     osgwidget.h
     physics.h

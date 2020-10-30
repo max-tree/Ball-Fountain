@@ -24,6 +24,10 @@ protected:
   virtual void resizeGL( int width, int height );//Note to self: virtual prevents people overwriting these program by the children.
 
   void timerEvent(QTimerEvent *);//from robotics. Event driven programming. Connect a timer to a slot and the slot to signals to control what happens when the timer goes off.
+  void set_camera();
+  void build_manipulator();
+  void create_sphere();
+  void initiate_timer();
 
 private:
   virtual void on_resize( int width, int height );

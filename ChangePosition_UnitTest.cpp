@@ -7,10 +7,12 @@ TEST(ChangePosition, WhenAllVelocityisZero_ExpectCorrectResult)
 {
     std::array <double, 3> expectedPosition{0.0,0.0,-0.0109};
     std::array <double, 3> initialPosition{0.0,0.0,0.0};
+    std::array <double, 3> initialVelocity{0.0,0.0,-0.0109};
     std::array <double, 3> resultantPosition{0.0,0.0,0.0};
     physics v;
     double tolerance{0.001};
 
+    v.setVelocity(initialVelocity);
     v.setPosition(initialPosition);
     v.change_position();
     resultantPosition = v.getPosition();

@@ -21,7 +21,7 @@
        <item row="0" column="0">
         <widget class="QPushButton" name="ChangeColor">
          <property name="text">
-          <string>PushButton</string>
+          <string>Change Color</string>
          </property>
         </widget>
        </item>

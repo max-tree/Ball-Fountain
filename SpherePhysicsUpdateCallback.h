@@ -2,7 +2,7 @@
 #define SPHEREPHYSICSUPDATECALLBACK_H
 
 #include "osgwidget.h" //Do I use "" or <>?
-#include <mainwindow.h>
+#include "mainwindow.h"
 #include <osg/PositionAttitudeTransform>
 #include <osgwidget.h>
 #include <iostream>
@@ -21,33 +21,9 @@ class SpherePhysicsUpdateCallback: public osg::NodeCallback //Note to self: ever
 {//I will have to make one of these for the physics equations. This is the secret. Do exactly what this does but add a physics world into the mix.
 public:
     SpherePhysicsUpdateCallback(){}
-    ~SpherePhysicsUpdateCallback() {}
+    ~SpherePhysicsUpdateCallback(){}
     virtual void operator()(osg::Node* node, osg::NodeVisitor* nv)
     {
-        static int initialChange{0};
-        if(initialChange == 0)
-        {
-            if(radio_button_clicked(0, 0) == 0)
-            {
-                std::array <double,3> initialVelocity{-2.0,0.0,10};
-                physicsSphere->setVelocity(initialVelocity);
-            }
-            else if(radio_button_clicked(0,0) == 1)
-            {
-                std::array <double,3> initialVelocity{0.0,0.0,10};
-                physicsSphere->setVelocity(initialVelocity);
-            }
-            else
-            {
-                std::array <double,3> initialVelocity{2.0,0.0,10};
-                physicsSphere->setVelocity(initialVelocity);
-            }
-            initialChange++;
-        }
-        else
-        {
-            initialChange++;
-        }
         physicsSphere->change_position();
         currentPosition = physicsSphere->getPosition();
         osg::Vec3d position(currentPosition[0], currentPosition[1], currentPosition[2]);
@@ -58,8 +34,8 @@ public:
         traverse(node, nv);
         if (currentPosition[2] <= zDirectionDeletePosition)
         {
-            std::cout << "HELLO \n";
-            node->unref();
+//            std::cout << "HELLO \n";
+//            node->unref();
         }
     }
 protected:
