@@ -2,16 +2,13 @@
 #define PHYSICS_H
 #include <array>
 
-class physics
+class Physics
 {
-private:
-    double gravitationalConstantMetric{9.81};
-    std::array <double, 3> velocityInMetersPerSecond{2.0,0.0,10.0};
-    std::array <double, 3> positionInMeters{0.0,0.0,0.0};
-    double deltaTimeInSeconds{1.0/30.0};
 public:
-    physics();
-    physics* node{nullptr};
+    Physics(){}
+    ~Physics(){}
+    bool ballOnTheGround = false;
+    double coefficientOfRestitution{.9};
 
     std::array <double, 3> getVelocity();
     std::array <double, 3> getPosition();
@@ -20,6 +17,15 @@ public:
     void change_position();
     void setVelocity(std::array <double, 3> velocityVector);
     void setPosition(std::array <double, 3> positionVector);
+    void check_if_ball_has_hit_the_ground();
+    void bounce_off_the_ground();
+
+
+private:
+    double gravitationalConstantMetric{9.81};
+    std::array <double, 3> velocityInMetersPerSecond{0.0,0.0,0.0};
+    std::array <double, 3> positionInMeters{0.0,0.0,0.0};
+    double deltaTimeInSeconds{1.0/30.0};
 };
 
 #endif // PHYSICS_H

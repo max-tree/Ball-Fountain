@@ -21,14 +21,14 @@ add_executable(${PROJECT_NAME}
     main.cpp
     mainwindow.cpp
     osgwidget.cpp
-    physics.cpp
+    Physics.cpp
     ChangeVelocityDueToGravity_unitTest.cpp
     ChangePosition_UnitTest.cpp
     BounceOffTheGround_unitTest.cpp
     CheckIfBallHasHitTheGround_unitTest.cpp
     mainwindow.h
     osgwidget.h
-    physics.h
+    Physics.h
     SpherePhysicsUpdateCallback.h
     SphereColorUpdateCallback.h
     mainwindowform.ui

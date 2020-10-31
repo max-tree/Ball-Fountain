@@ -16,7 +16,7 @@
 #include <osg/NodeVisitor>
 #include <osg/LineWidth>
 #include <osgUtil/SmoothingVisitor>
-#include <osg/PositionAttitudeTransform>
+//#include <osg/PositionAttitudeTransform>
 
 #include <cassert>
 #include <vector>
@@ -67,13 +67,10 @@ void OSGWidget::timerEvent(QTimerEvent *)
 {
     update();
 
-    static int timerCount{0};
     if(timerCount == 30)
     {
-//        std::cout << "HELLO!\n";
-//        mRoot-> = 0;
         create_sphere();
-
+        timerCount = 0;
     }
     timerCount++;
 
@@ -148,9 +145,14 @@ void OSGWidget::build_manipulator()
     mView->setCameraManipulator( manipulator );
 }
 
+void OSGWidget::delete_sphere(int index)
+{
+    mRoot->removeChild(sphereTransform[index]);
+    sphereTransform[index] = nullptr;
+}
+
 void OSGWidget::create_sphere()
 {
-//    osg::ref_ptr<osg::Sphere> sphere;
     osg::Sphere* sphere    = new osg::Sphere( osg::Vec3( 0.f, 0.f, 0.f ), 2.0f );
     osg::ShapeDrawable* sd = new osg::ShapeDrawable( sphere );
     sd->setColor( osg::Vec4( 0.f, 0.f, 0.f, 0.f ) );
@@ -172,7 +174,33 @@ void OSGWidget::create_sphere()
     transform->setPosition(osg::Vec3( 0.f, 0.f, 0.f ));
     transform->setUpdateCallback(new SpherePhysicsUpdateCallback());
     transform->addChild(geode);
+    manage_number_of_spheres(transform);
+}
+
+void OSGWidget::manage_number_of_spheres(osg::PositionAttitudeTransform *transform)
+{
     mRoot->addChild(transform);
+    if(sphereStorageIndex<5)
+    {
+        if(sphereTransform[sphereStorageIndex] != nullptr)
+        {
+            delete_sphere(sphereStorageIndex);
+            sphereTransform[sphereStorageIndex] = transform;
+            sphereStorageIndex++;
+        }
+        else
+        {
+            sphereTransform[sphereStorageIndex] = transform;
+            sphereStorageIndex++;
+        }
+    }
+    else
+    {
+        sphereStorageIndex = 0;
+        delete_sphere(sphereStorageIndex);
+        sphereTransform[sphereStorageIndex] = transform;
+        sphereStorageIndex++;
+    }
 }
 
 void OSGWidget::initiate_timer()
@@ -182,3 +210,9 @@ void OSGWidget::initiate_timer()
     double timerDurationInMilliSeconds{timeStep * 1000};
     mTimerId=startTimer(timerDurationInMilliSeconds);
 }
+
+int OSGWidget::getSphereStorageIndex()
+{
+ return sphereStorageIndex;
+}
+

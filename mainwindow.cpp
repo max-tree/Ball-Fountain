@@ -7,7 +7,6 @@ MainWindow::MainWindow(QWidget *parent) :
     mMainWindowUI{new Ui::MainWindowForm}
 {
     mMainWindowUI->setupUi(this);
-
 }
 
 MainWindow::~MainWindow()
@@ -46,6 +45,7 @@ int  button_Clicked(int change)
 int radio_button_clicked(bool change, int initialRadioButton)
 {
     static int radioButton{0};
+
     if(change)
     {
         if(initialRadioButton == 0)
@@ -62,6 +62,7 @@ int radio_button_clicked(bool change, int initialRadioButton)
             radioButton = 2;
         }
     }
+
     return radioButton;
 }
 

@@ -1,4 +1,4 @@
-#include "physics.h"
+#include "Physics.h"
 #include "gtest/gtest.h"
 
 /*Tests are based on a deltaTime of 1/30*/
@@ -9,7 +9,7 @@ TEST(ChangePosition, WhenAllVelocityisZero_ExpectCorrectResult)
     std::array <double, 3> initialPosition{0.0,0.0,0.0};
     std::array <double, 3> initialVelocity{0.0,0.0,-0.0109};
     std::array <double, 3> resultantPosition{0.0,0.0,0.0};
-    physics v;
+    Physics v;
     double tolerance{0.001};
 
     v.setVelocity(initialVelocity);
@@ -28,7 +28,7 @@ TEST(ChangePosition, WhenAllVelocityisInitiallyNonzero_ExpectCorrectResult)
     std::array <double, 3> initialPosition{1.0,1.0,1.0};
     std::array <double, 3> initiaVelocity{1.0,-1.0,1.0};
     std::array <double, 3> resultantPosition{0.0,0.0,0.0};
-    physics v;
+    Physics v;
     double tolerance{0.001};
 
     v.setVelocity(initiaVelocity);

@@ -1,4 +1,4 @@
-#include "physics.h"
+#include "Physics.h"
 #include "gtest/gtest.h"
 
 /*Tests are based on a deltaTime of 1/30*/
@@ -8,7 +8,7 @@ TEST(ChangeVelocityDueToGravity, WhenVelocityIsZeroInitiallyInTheHorizontal_Expe
     std::array <double, 3> expectedVelocity{0.0,0.0,0.0};
     std::array <double, 3> initialVelocity{0.0,0.0,0.0};
     std::array <double, 3> resultantVelocity{0.0,0.0,0.0};
-    physics v;
+    Physics v;
 
     v.setVelocity(initialVelocity);
     v.change_velocity_due_to_gravity();
@@ -24,7 +24,7 @@ TEST(AccelerationDueToGravityTest, WhenVelocityIsNonzeroInTheHorizontal_ExpectNo
     std::array <double, 3> expectedVelocity{1.0,1.0,0.0};
     std::array <double, 3> initialVelocity{1.0,1.0,0.0};
     std::array <double, 3> resultantVelocity{0.0,0.0,0.0};
-    physics v;
+    Physics v;
 
     v.setVelocity(initialVelocity);
     v.change_velocity_due_to_gravity();
@@ -39,7 +39,7 @@ TEST(AccelerationDueToGravityTest, WhenVelocityIsZeroInitiallyInTheVertical_Expe
     std::array <double, 3> expectedVelocity{0.0,0.0,-0.327};//.981 comes from the time step being .1s
     std::array <double, 3> initialVelocity{0.0,0.0,0.0};
     std::array <double, 3> resultantVelocity{0.0,0.0,0.0};
-    physics v;
+    Physics v;
     double tolerance{0.001};
 
     v.setVelocity(initialVelocity);
@@ -56,7 +56,7 @@ TEST(AccelerationDueToGravityTest, WhenVelocityIsInitiallyInTheVertical_ExpectCo
     std::array <double, 3> expectedVelocity{0.0,0.0,0.0};
     std::array <double, 3> initialVelocity{0.0,0.0,0.327};
     std::array <double, 3> resultantVelocity{0.0,0.0,0.0};
-    physics v;
+    Physics v;
     double tolerance{0.001};
 
     v.setVelocity(initialVelocity);
