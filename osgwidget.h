@@ -19,11 +19,13 @@ public:
              Qt::WindowFlags f = 0 );
 
   virtual ~OSGWidget();
-  osg::PositionAttitudeTransform *sphereTransform[5]{nullptr,nullptr,nullptr,nullptr,nullptr};
   int timerCount{0};
   int sphereStorageIndex{0};
   int getSphereStorageIndex();
   void manage_number_of_spheres(osg::PositionAttitudeTransform *transform);
+  osg::Vec4 black{osg::Vec4( 0.f, 0.f, 0.f, 0.f )};
+  osg::Vec4 yellow{osg::Vec4( 1.f, 1.f, 0.f, 0.f )};
+  osg::PositionAttitudeTransform *sphereTransform[5]{nullptr,nullptr,nullptr,nullptr,nullptr};
 
 protected:
   virtual void paintEvent( QPaintEvent* paintEvent );//Note to self: by putting ovverride at the end of this line we can find out if this funciton is from QOpenGLWidget (the base class)
@@ -34,7 +36,9 @@ protected:
   void set_camera();
   void build_manipulator();
   void create_sphere();
-  void OSGWidget::delete_sphere(int index);
+  void create_fountain();
+  void create_ground();
+  void delete_sphere(int index);
   void initiate_timer();
 
 private:

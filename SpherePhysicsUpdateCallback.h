@@ -9,15 +9,7 @@
 #include "SphereColorUpdateCallback.h"
 #include <osg/ref_ptr>
 
-class ActiveSpheres
-{
-public:
-    double xDirectionDeletePosition{5.0};
-    double yDirectionDeletePosition{5.0};
-
-};
-
-class SpherePhysicsUpdateCallback: public osg::NodeCallback //Note to self: every class needs to have its own .cpp file. MOVE THIS
+class SpherePhysicsUpdateCallback: public osg::NodeCallback
 {
 public:
     SpherePhysicsUpdateCallback(){
@@ -45,7 +37,6 @@ public:
     virtual void operator()(osg::Node* node, osg::NodeVisitor* nv)
     {
         physicsSphere->change_position();
-        physicsSphere->check_if_ball_has_hit_the_ground();
         physicsSphere->bounce_off_the_ground();
 
         currentPosition = physicsSphere->getPosition();
@@ -63,15 +54,5 @@ protected:
     double zDirectionDeletePosition{-2.0};
     int sphereStorageNum{0};
 };
-
-//class SphereStorage
-//{
-//public:
-//    SphereStorage();
-//    ~SphereStorage();
-//    osg::PositionAttitudeTransform *sphereTransform[5]{nullptr,nullptr,nullptr,nullptr,nullptr};
-
-//};
-
 
 #endif // SPHEREPHYSICSUPDATECALLBACK_H
