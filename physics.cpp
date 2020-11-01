@@ -1,61 +1,65 @@
 #include "Physics.h"
-#include <iostream>
 
-physics::physics()
-{
-    if(radio_button_clicked(0, 1) == 0)
-    {
-        std::array <double,3> initialVelocity{-2.0,0.0,10};
-        setVelocity(initialVelocity);
-    }
-    else if(radio_button_clicked(0,1) == 1)
-    {
-        std::array <double,3> initialVelocity{0.0,0.0,10};
-        setVelocity(initialVelocity);
-    }
-    else if(radio_button_clicked(0,1) == 2)
-    {
-        std::array <double,3> initialVelocity{2.0,0.0,10};
-        setVelocity(initialVelocity);
-    }
-    else
-    {}
-}
-void physics::change_velocity_due_to_gravity()
+void Physics::change_velocity_due_to_gravity()
 {
     velocityInMetersPerSecond[2] = velocityInMetersPerSecond[2] - gravitationalConstantMetric*deltaTimeInSeconds;
     return;
 }
 
-void physics::change_position()
+void Physics::change_position()
 {
     change_velocity_due_to_gravity();
     positionInMeters[0] = positionInMeters[0] + velocityInMetersPerSecond[0]*deltaTimeInSeconds;
     positionInMeters[1] = positionInMeters[1] + velocityInMetersPerSecond[1]*deltaTimeInSeconds;
     positionInMeters[2] = positionInMeters[2] + velocityInMetersPerSecond[2]*deltaTimeInSeconds;
-    std::cout << "here" << '\n';
-
-    return;
 }
 
-std::array <double, 3> physics::getVelocity()
+void Physics::check_if_ball_has_hit_the_ground()
+{
+    if(positionInMeters[2] > sphereRadius-correctionForVisualAccuracy
+            || positionInMeters[0] > groundradius  || positionInMeters[1] > groundradius
+            || positionInMeters[0] < -groundradius || positionInMeters[1] < -groundradius)
+    {
+        ballOnTheGround = false;
+    }
+    else
+    {
+        ballOnTheGround = true;
+    }
+}
+
+void Physics::bounce_off_the_ground()
+{
+    check_if_ball_has_hit_the_ground();
+    if(ballOnTheGround)
+    {
+        velocityInMetersPerSecond[2] = -coefficientOfRestitution*velocityInMetersPerSecond[2];
+        ballOnTheGround = false;
+    }
+    else
+    {
+    }
+}
+
+std::array <double, 3> Physics::getVelocity()
 {
     std::array <double, 3> currentVelocity{velocityInMetersPerSecond};
     return currentVelocity;
 }
-std::array <double, 3> physics::getPosition()
+
+std::array <double, 3> Physics::getPosition()
 {
     std::array <double, 3> currentPosition{positionInMeters};
     return currentPosition;
 }
 
 
-void physics::setVelocity(std::array <double, 3> velocityVector)
+void Physics::setVelocity(std::array <double, 3> velocityVector)
 {
     velocityInMetersPerSecond = velocityVector;
 }
 
-void physics::setPosition(std::array <double, 3> positionVector)
+void Physics::setPosition(std::array <double, 3> positionVector)
 {
      positionInMeters = positionVector;
 }

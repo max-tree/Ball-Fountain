@@ -10,6 +10,9 @@ public:
     ~Physics(){}
     bool ballOnTheGround = false;
     double coefficientOfRestitution{.9};
+    double sphereRadius{1.0};
+    double groundradius{5.0};
+    double correctionForVisualAccuracy{0.5};
 
     std::array <double, 3> getVelocity();
     std::array <double, 3> getPosition();
@@ -25,7 +28,7 @@ public:
 private:
     double gravitationalConstantMetric{9.81};
     std::array <double, 3> velocityInMetersPerSecond{0.0,0.0,0.0};
-    std::array <double, 3> positionInMeters{0.0,0.0,0.0};
+    std::array <double, 3> positionInMeters{0.0,0.0,sphereRadius};
     double deltaTimeInSeconds{1.0/30.0};
 };
 
