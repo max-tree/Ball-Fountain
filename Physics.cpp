@@ -28,7 +28,7 @@ void Physics::check_if_ball_has_hit_the_ground()
     }
 }
 
-void Physics::bounce_off_the_ground()
+void Physics::change_velocity_if_ball_hits_the_ground()
 {
     check_if_ball_has_hit_the_ground();
     if(ballOnTheGround)
@@ -63,3 +63,19 @@ void Physics::setPosition(std::array <double, 3> positionVector)
 {
      positionInMeters = positionVector;
 }
+
+double calculate_distance_between_two_vectors(std::array <double, 3> vector1, std::array <double, 3> vector2)
+{
+    return sqrt(pow(vector1[0]-vector2[0],2)+pow(vector1[1]-vector2[1],2)+pow(vector1[2]-vector2[2],2));
+}
+
+double dot_product_of_two_vectors(std::array <double, 3> vector1, std::array <double, 3> vector2)
+{
+    double result{0.0};
+    for(int index{0}; index<3; index++)
+    {
+        result = result + vector1[index]*vector2[index];
+    }
+    return result;
+}
+

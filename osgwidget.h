@@ -7,7 +7,7 @@
 #include <osgViewer/CompositeViewer>
 #include <osgGA/TrackballManipulator>
 #include <osgText/Text>
-#include <Physics.h>
+#include "Physics.h"
 #include <osg/PositionAttitudeTransform>
 
 class OSGWidget : public QOpenGLWidget
@@ -26,6 +26,12 @@ public:
   osg::Vec4 black{osg::Vec4( 0.f, 0.f, 0.f, 0.f )};
   osg::Vec4 yellow{osg::Vec4( 1.f, 1.f, 0.f, 0.f )};
   osg::PositionAttitudeTransform *sphereTransform[5]{nullptr,nullptr,nullptr,nullptr,nullptr};
+  Physics *sphere1Info{nullptr};
+  Physics *sphere2Info{nullptr};
+  Physics *sphere3Info{nullptr};
+  Physics *sphere4Info{nullptr};
+  Physics *sphere5Info{nullptr};
+
 
 protected:
   virtual void paintEvent( QPaintEvent* paintEvent );//Note to self: by putting ovverride at the end of this line we can find out if this funciton is from QOpenGLWidget (the base class)

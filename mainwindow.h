@@ -5,7 +5,7 @@
 #include <QtCore>
 #include <osgwidget.h>
 #include <QPushButton>
-#include <physics.h>
+#include "Physics.h"
 
 namespace Ui {
 class MainWindowForm;

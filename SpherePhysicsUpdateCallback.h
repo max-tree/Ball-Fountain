@@ -37,7 +37,7 @@ public:
     virtual void operator()(osg::Node* node, osg::NodeVisitor* nv)
     {
         physicsSphere->change_position();
-        physicsSphere->bounce_off_the_ground();
+        physicsSphere->change_velocity_if_ball_hits_the_ground();
 
         currentPosition = physicsSphere->getPosition();
         osg::Vec3d position(currentPosition[0], currentPosition[1], currentPosition[2]);

@@ -217,7 +217,7 @@ void OSGWidget::build_manipulator()
 {
     osg::ref_ptr<osgGA::TrackballManipulator> manipulator = new osgGA::TrackballManipulator;
     manipulator->setAllowThrow( false );
-    manipulator->setHomePosition(osg::Vec3d(0.0,-20.0,3.0),osg::Vec3d(0,0,0),osg::Vec3d(0,0,1));    //Note to self: The eye is the camera position (never the origin)
+    manipulator->setHomePosition(osg::Vec3d(0.0,-20.0,7.0),osg::Vec3d(0,0,0),osg::Vec3d(0,0,1));    //Note to self: The eye is the camera position (never the origin)
     mView->setCameraManipulator( manipulator );
 }
 
