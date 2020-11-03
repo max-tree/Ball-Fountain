@@ -31,7 +31,7 @@ add_executable(Physics_UnitTests
     DotProductOfTwoVectors_unitTest.cpp
 )
 
-target_link_libraries( (Physics_UnitTests
+target_link_libraries(Physics_UnitTests
     ${GTEST_LIBRARIES}
     ${GTEST_MAIN_LIBRARIES}
     Physics
