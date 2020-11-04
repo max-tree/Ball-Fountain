@@ -11,7 +11,6 @@ TEST(DotProductOfTwoVecotrs, WhenOneVectorIsNull_ExpectZero)
 
     result = dot_product_of_two_vectors(vector1, vector2);
     EXPECT_NEAR(expectedResult, result, tolerance);
-
 }
 
 TEST(DotProductOfTwoVecotrs, WhenTwoVectorsAreDifferent_ExpectCorrectDistance)
@@ -24,5 +23,4 @@ TEST(DotProductOfTwoVecotrs, WhenTwoVectorsAreDifferent_ExpectCorrectDistance)
 
     result = dot_product_of_two_vectors(vector1, vector2);
     EXPECT_NEAR(expectedResult, result, tolerance);
-
 }

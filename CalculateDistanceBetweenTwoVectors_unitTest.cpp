@@ -1,7 +1,6 @@
 #include "Physics.h"
 #include "gtest/gtest.h"
 
-
 TEST(CalculateDistance, WhenTwoVectorsAreTheSame_ExpectDistanceOfZero)
 {
     double expectedResult{0.0};
@@ -12,7 +11,6 @@ TEST(CalculateDistance, WhenTwoVectorsAreTheSame_ExpectDistanceOfZero)
 
     result = calculate_distance_between_two_vectors(vector1, vector2);
     EXPECT_NEAR(expectedResult, result, tolerance);
-
 }
 
 TEST(CalculateDistance, WhenTwoVectorsAreDifferent_ExpectCorrectDistance)
@@ -25,5 +23,4 @@ TEST(CalculateDistance, WhenTwoVectorsAreDifferent_ExpectCorrectDistance)
 
     result = calculate_distance_between_two_vectors(vector1, vector2);
     EXPECT_NEAR(expectedResult, result, tolerance);
-
 }

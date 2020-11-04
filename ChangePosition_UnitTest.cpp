@@ -3,6 +3,22 @@
 
 /*Tests are based on a deltaTime of 1/30*/
 
+std::array <double,3> get_new_position(Physics v, std::array <double,3> initialVelocity, std::array <double,3> initialPosition)
+{
+    v.setVelocity(initialVelocity);
+    v.setPosition(initialPosition);
+    v.change_position();
+    return v.getPosition();
+}
+
+void test_vector_to_see_if_correct_result_is_output(std::array <double, 3> expectedPosition, std::array <double, 3> resultantPosition, double tolerance)
+{
+    EXPECT_NEAR(expectedPosition[0],resultantPosition[0], tolerance);
+    EXPECT_NEAR(expectedPosition[1],resultantPosition[1], tolerance);
+    EXPECT_NEAR(expectedPosition[2],resultantPosition[2], tolerance);
+}
+
+
 TEST(ChangePosition, WhenAllVelocityisZero_ExpectCorrectResult)
 {
     std::array <double, 3> expectedPosition{0.0,0.0,-0.0109};
@@ -12,31 +28,21 @@ TEST(ChangePosition, WhenAllVelocityisZero_ExpectCorrectResult)
     Physics v;
     double tolerance{0.001};
 
-    v.setVelocity(initialVelocity);
-    v.setPosition(initialPosition);
-    v.change_position();
-    resultantPosition = v.getPosition();
+    resultantPosition = get_new_position(v, initialVelocity, initialPosition);
 
-    EXPECT_NEAR(expectedPosition[0],resultantPosition[0], tolerance);
-    EXPECT_NEAR(expectedPosition[1],resultantPosition[1], tolerance);
-    EXPECT_NEAR(expectedPosition[2],resultantPosition[2], tolerance);
+    test_vector_to_see_if_correct_result_is_output(expectedPosition,resultantPosition, tolerance);
 }
 
 TEST(ChangePosition, WhenAllVelocityisInitiallyNonzero_ExpectCorrectResult)
 {
     std::array <double, 3> expectedPosition{1.03333,0.96666,1.0224};
     std::array <double, 3> initialPosition{1.0,1.0,1.0};
-    std::array <double, 3> initiaVelocity{1.0,-1.0,1.0};
+    std::array <double, 3> initialVelocity{1.0,-1.0,1.0};
     std::array <double, 3> resultantPosition{0.0,0.0,0.0};
     Physics v;
     double tolerance{0.001};
 
-    v.setVelocity(initiaVelocity);
-    v.setPosition(initialPosition);
-    v.change_position();
-    resultantPosition = v.getPosition();
+    resultantPosition = resultantPosition = get_new_position(v, initialVelocity, initialPosition);
 
-    EXPECT_NEAR(expectedPosition[0],resultantPosition[0], tolerance);
-    EXPECT_NEAR(expectedPosition[1],resultantPosition[1], tolerance);
-    EXPECT_NEAR(expectedPosition[2],resultantPosition[2], tolerance);
+    test_vector_to_see_if_correct_result_is_output(expectedPosition,resultantPosition, tolerance);
 }

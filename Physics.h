@@ -2,20 +2,19 @@
 #define PHYSICS_H
 #include <array>
 #include <math.h>
-#include "mainwindow.h"
 
 class Physics
 {
 public:
     Physics(){}
     ~Physics(){}
+
     bool ballOnTheGround = false;
     double coefficientOfRestitution{.9};
     double sphereRadius{1.0};
     double groundradius{5.0};
     double correctionForVisualAccuracy{0.5};
     double sphereMass{10.0};
-//    Physics *sphere{nullptr};
 
     std::array <double, 3> getVelocity();
     std::array <double, 3> getPosition();

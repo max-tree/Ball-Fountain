@@ -6,7 +6,7 @@ FIND_PACKAGE(Qt5Gui)
 FIND_PACKAGE(OpenSceneGraph REQUIRED COMPONENTS osgDB osgGA osgUtil osgViewer osgText)
 FIND_PACKAGE(GTest REQUIRED)
 INCLUDE_DIRECTORIES(${GTEST_INCLUDE_DIRS})
-INCLUDE_DIRECTORIES( ${OPENSCENEGRAPH_INCLUDE_DIRS} )
+INCLUDE_DIRECTORIES( ${OPENSCENEGRAPH_INCLUDE_DIRS})
 
 
 SET(CMAKE_CXX_STANDARD 11)
@@ -19,7 +19,7 @@ SET(CMAKE_AUTORCC ON)
 add_library(Physics STATIC
     Physics.cpp
     Physics.h
-  )
+)
 
 add_executable(Physics_UnitTests
     ChangeVelocityDueToGravity_unitTest.cpp
@@ -41,6 +41,9 @@ add_executable(${PROJECT_NAME}
     main.cpp
     mainwindow.cpp
     osgwidget.cpp
+    osgwidgetObjectCreation.cpp
+    SpherePhysicsUpdateCallback.cpp
+    SphereColorUpdateCallback.cpp
     mainwindow.h
     osgwidget.h
     mainwindowform.ui
@@ -54,4 +57,3 @@ target_link_libraries( ${PROJECT_NAME}
     Qt5::Gui
     Physics
 )
-

@@ -7,8 +7,8 @@
 #include <osgViewer/CompositeViewer>
 #include <osgGA/TrackballManipulator>
 #include <osgText/Text>
-#include "Physics.h"
 #include <osg/PositionAttitudeTransform>
+
 
 class OSGWidget : public QOpenGLWidget
 {
@@ -26,19 +26,13 @@ public:
   osg::Vec4 black{osg::Vec4( 0.f, 0.f, 0.f, 0.f )};
   osg::Vec4 yellow{osg::Vec4( 1.f, 1.f, 0.f, 0.f )};
   osg::PositionAttitudeTransform *sphereTransform[5]{nullptr,nullptr,nullptr,nullptr,nullptr};
-  Physics *sphere1Info{nullptr};
-  Physics *sphere2Info{nullptr};
-  Physics *sphere3Info{nullptr};
-  Physics *sphere4Info{nullptr};
-  Physics *sphere5Info{nullptr};
-
 
 protected:
-  virtual void paintEvent( QPaintEvent* paintEvent );//Note to self: by putting ovverride at the end of this line we can find out if this funciton is from QOpenGLWidget (the base class)
-  virtual void paintGL();//Note to self: you cannot override without something being virtual first
-  virtual void resizeGL( int width, int height );//Note to self: virtual prevents people overwriting these program by the children.
+  virtual void paintEvent( QPaintEvent* paintEvent );
+  virtual void paintGL();
+  virtual void resizeGL( int width, int height );
 
-  void timerEvent(QTimerEvent *);//from robotics. Event driven programming. Connect a timer to a slot and the slot to signals to control what happens when the timer goes off.
+  void timerEvent(QTimerEvent *);
   void set_camera();
   void build_manipulator();
   void create_sphere();
@@ -46,6 +40,7 @@ protected:
   void create_ground();
   void delete_sphere(int index);
   void initiate_timer();
+  void initialize_sphere_record();
 
 private:
   virtual void on_resize( int width, int height );
@@ -57,7 +52,5 @@ private:
   osg::ref_ptr<osg::Group> mRoot;
   int mTimerId{0};
 };
-
-
 
 #endif

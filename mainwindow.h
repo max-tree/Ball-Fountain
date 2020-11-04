@@ -33,7 +33,7 @@ private:
 };
 
 
-int  button_Clicked(int change);
+int push_button_clicked(int change);
 int radio_button_clicked(bool change, int initialRadioButton);
 
 
